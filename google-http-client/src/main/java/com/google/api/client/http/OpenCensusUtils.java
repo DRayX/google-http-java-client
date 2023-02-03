@@ -229,7 +229,9 @@ public class OpenCensusUtils {
           new TextFormat.Setter<HttpHeaders>() {
             @Override
             public void put(HttpHeaders carrier, String key, String value) {
-              carrier.set(key, value);
+              if (carrier.get(key) == null) {
+                carrier.set(key, value);
+              }
             }
           };
     } catch (Exception e) {
